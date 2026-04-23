@@ -14,15 +14,29 @@ interface FormState {
 
 const EMPTY_FORM: FormState = { amount: "", category: "", description: "", date: "" };
 
+const PRESET_CATEGORIES = ["Food", "Transport", "Bills", "Shopping", "Health", "Other"];
+const CUSTOM_SENTINEL = "__custom__";
+
 interface ExpenseFormProps {
   onCreated: (expense: Expense) => void;
 }
 
 function ExpenseForm({ onCreated }: ExpenseFormProps) {
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
+  const [categoryMode, setCategoryMode] = useState<"preset" | "custom">("preset");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const idempotencyKeyRef = useRef<string | null>(null);
+
+  function handleCategorySelect(value: string) {
+    if (value === CUSTOM_SENTINEL) {
+      setCategoryMode("custom");
+      setForm((f) => ({ ...f, category: "" }));
+    } else {
+      setCategoryMode("preset");
+      setForm((f) => ({ ...f, category: value }));
+    }
+  }
 
   function newKey() {
     return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
@@ -82,14 +96,28 @@ function ExpenseForm({ onCreated }: ExpenseFormProps) {
         </label>
         <label>
           Category
-          <input
-            type="text"
+          <select
             required
-            maxLength={50}
-            value={form.category}
-            onChange={(e) => setForm({ ...form, category: e.target.value })}
-            placeholder="Food, Transport…"
-          />
+            value={categoryMode === "custom" ? CUSTOM_SENTINEL : form.category}
+            onChange={(e) => handleCategorySelect(e.target.value)}
+          >
+            <option value="">Select…</option>
+            {PRESET_CATEGORIES.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+            <option value={CUSTOM_SENTINEL}>Custom…</option>
+          </select>
+          {categoryMode === "custom" && (
+            <input
+              type="text"
+              required
+              maxLength={50}
+              value={form.category}
+              onChange={(e) => setForm({ ...form, category: e.target.value })}
+              placeholder="Enter category"
+              style={{ marginTop: "0.4rem" }}
+            />
+          )}
         </label>
       </div>
       <div className="form-row">
