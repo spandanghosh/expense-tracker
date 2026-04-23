@@ -242,11 +242,11 @@ export default function App() {
   const allCategories = Array.from(new Set(expenses.map((e) => e.category))).sort();
   const visible = category ? expenses.filter((e) => e.category === category) : expenses;
 
-  async function fetchExpenses(cat: string, s: string) {
+  async function fetchExpenses(s: string) {
     setLoading(true);
     setListError(null);
     try {
-      const data = await listExpenses({ category: cat || undefined, sort: s });
+      const data = await listExpenses({ sort: s });
       setExpenses(data);
     } catch {
       setListError("Failed to load expenses. Please refresh.");
@@ -256,8 +256,8 @@ export default function App() {
   }
 
   useEffect(() => {
-    fetchExpenses(category, sort);
-  }, [category, sort]);
+    fetchExpenses(sort);
+  }, [sort]);
 
   function handleCreated(expense: Expense) {
     setExpenses((prev) => {
