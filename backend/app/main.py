@@ -1,6 +1,7 @@
 import os
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException, Request
+from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import ValidationError
@@ -35,6 +36,22 @@ async def http_exception_handler(request: Request, exc: HTTPException):
             content=exc.detail,
         )
     return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
+
+
+@app.exception_handler(RequestValidationError)
+async def request_validation_handler(request: Request, exc: RequestValidationError):
+    errors = exc.errors()
+    detail = errors[0]["msg"] if errors else "Validation error"
+    return JSONResponse(
+        status_code=422,
+        media_type="application/problem+json",
+        content={
+            "type": "https://httpstatuses.com/422",
+            "title": "Unprocessable Entity",
+            "status": 422,
+            "detail": detail,
+        },
+    )
 
 
 @app.exception_handler(ValidationError)
