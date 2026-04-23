@@ -1,4 +1,3 @@
-import json
 from datetime import datetime, timedelta
 from fastapi import Header, HTTPException
 from sqlalchemy.orm import Session
