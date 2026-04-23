@@ -1,4 +1,4 @@
-/* ── Layout ── */
+/* Layout */
 .app {
   max-width: 900px;
   margin: 0 auto;
@@ -22,7 +22,7 @@
   gap: 2rem;
 }
 
-/* ── Form ── */
+/* Form */
 .expense-form {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
@@ -50,7 +50,8 @@
   font-weight: 500;
 }
 
-.form-row input {
+.form-row input,
+.form-row select {
   padding: 0.45rem 0.6rem;
   border: 1px solid #cbd5e1;
   border-radius: 5px;
@@ -58,7 +59,8 @@
   background: #fff;
 }
 
-.form-row input:focus {
+.form-row input:focus,
+.form-row select:focus {
   outline: 2px solid #3b82f6;
   border-color: transparent;
 }
@@ -111,7 +113,7 @@
   background: #1d4ed8;
 }
 
-/* ── Filter + Total ── */
+/* Filter + Total */
 .list-section {
   display: flex;
   flex-direction: column;
@@ -154,7 +156,7 @@
   padding: 0.4rem 0.9rem;
 }
 
-/* ── Table ── */
+/* Table */
 .expense-table {
   width: 100%;
   border-collapse: collapse;
@@ -185,7 +187,7 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* ── States ── */
+/* States */
 .state-msg {
   color: #64748b;
   font-size: 0.9rem;
@@ -196,7 +198,7 @@
   color: #b91c1c;
 }
 
-/* ── Responsive ── */
+/* Responsive */
 @media (max-width: 600px) {
   .form-row {
     grid-template-columns: 1fr;

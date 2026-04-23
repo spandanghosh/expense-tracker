@@ -3,13 +3,6 @@ from decimal import Decimal
 from pydantic import BaseModel, Field, field_validator
 
 
-class ProblemDetail(BaseModel):
-    type: str
-    title: str
-    status: int
-    detail: str
-
-
 class ExpenseCreate(BaseModel):
     model_config = {"extra": "forbid"}
 

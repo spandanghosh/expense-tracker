@@ -50,7 +50,6 @@ export async function createExpense(
   try {
     resp = await fetchWithTimeout(`${API_BASE}/expenses`, options);
   } catch (err) {
-    // single retry on network error
     resp = await fetchWithTimeout(`${API_BASE}/expenses`, options);
   }
 

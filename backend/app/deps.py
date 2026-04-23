@@ -1,6 +1,6 @@
 import json
 from datetime import datetime, timedelta
-from fastapi import Header, HTTPException, Request, Response
+from fastapi import Header, HTTPException
 from sqlalchemy.orm import Session
 from app.models import IdempotencyKey
 

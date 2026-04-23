@@ -6,8 +6,8 @@ A production-grade full-stack expense tracker built as a take-home assignment. F
 
 | Service  | URL |
 |----------|-----|
-| Frontend | _Deploy to Vercel — see instructions below_ |
-| Backend  | _Deploy to Render — see instructions below_ |
+| Frontend | https://expense-tracker-six-sepia-13.vercel.app |
+| Backend  | https://expense-tracker-le2w.onrender.com |
 
 ---
 
@@ -113,7 +113,7 @@ All monetary values stored as `amount_minor INTEGER` (paise = rupees × 100). Th
 - **SQLite over Postgres** — SQLite is zero-config and sufficient for a demo. A persistent disk must be mounted on Render (or swapped for Postgres) for data durability.
 - **No auth layer** — JWT/OAuth2 is omitted; this is a local/demo deployment only.
 - **Optimistic prepend then server-reconcile** — on form submit, the new expense is prepended locally and a fresh `GET` is triggered. In a high-traffic app a cursor-based approach would be cleaner.
-- **Single file for all components** — all React components are in `App.tsx` (≈ 220 lines). Splits into separate files when the file grows past ~300 lines.
+- **Single file for all components** — all React components are in `App.tsx` (≈ 300 lines). Would split into separate files in a larger codebase.
 
 ---
 

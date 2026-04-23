@@ -3,7 +3,7 @@ import { createExpense, listExpenses } from "./api";
 import type { Expense, ExpenseCreate } from "./api";
 import "./App.css";
 
-// ─── ExpenseForm ─────────────────────────────────────────────────────────────
+// ExpenseForm
 
 interface FormState {
   amount: string;
@@ -148,7 +148,7 @@ function ExpenseForm({ onCreated }: ExpenseFormProps) {
   );
 }
 
-// ─── FilterBar ────────────────────────────────────────────────────────────────
+// FilterBar
 
 interface FilterBarProps {
   category: string;
@@ -182,7 +182,7 @@ function FilterBar({ category, sort, categories, onChange }: FilterBarProps) {
   );
 }
 
-// ─── TotalDisplay ─────────────────────────────────────────────────────────────
+// TotalDisplay
 
 function TotalDisplay({ expenses }: { expenses: Expense[] }) {
   const total = expenses.reduce((sum, e) => sum + Math.round(parseFloat(e.amount) * 100), 0);
@@ -193,7 +193,7 @@ function TotalDisplay({ expenses }: { expenses: Expense[] }) {
   );
 }
 
-// ─── ExpenseList ──────────────────────────────────────────────────────────────
+// ExpenseList
 
 interface ExpenseListProps {
   expenses: Expense[];
@@ -230,7 +230,7 @@ function ExpenseList({ expenses, loading, error }: ExpenseListProps) {
   );
 }
 
-// ─── App ──────────────────────────────────────────────────────────────────────
+// App
 
 export default function App() {
   const [expenses, setExpenses] = useState<Expense[]>([]);
