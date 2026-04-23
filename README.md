@@ -137,4 +137,18 @@ pip install -r requirements.txt
 pytest -v
 ```
 
+Expected: **17 passed**.
+
+---
+
+## Seeding Sample Data
+
+Render's SQLite database is wiped on every redeploy. To restore sample expenses after a redeploy, run from the repo root:
+
+```bash
+python seed.py
+```
+
+This posts 12 realistic expenses via the live API. Run it once manually — it is intentionally not wired into the deploy pipeline to avoid duplicate rows.
+
 Expected: **17 passed** covering idempotency, filter/sort correctness, and all validation rules.

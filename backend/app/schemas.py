@@ -37,7 +37,7 @@ class ExpenseRead(BaseModel):
     def from_orm_expense(cls, expense) -> "ExpenseRead":
         return cls(
             id=expense.id,
-            amount=Decimal(expense.amount_minor) / 100,
+            amount=(Decimal(expense.amount_minor) / Decimal("100")).quantize(Decimal("0.01")),
             category=expense.category,
             description=expense.description,
             date=expense.date,
