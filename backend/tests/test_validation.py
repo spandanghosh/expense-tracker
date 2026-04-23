@@ -1,9 +1,6 @@
 import uuid
 
 
-KEY = {"Idempotency-Key": str(uuid.uuid4())}
-
-
 def test_amount_zero_rejected(client):
     resp = client.post("/expenses", json={"amount": "0", "category": "Food", "date": "2026-04-23"}, headers={"Idempotency-Key": str(uuid.uuid4())})
     assert resp.status_code == 422

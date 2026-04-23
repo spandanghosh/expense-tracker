@@ -1,7 +1,7 @@
 import json
 from decimal import Decimal
 from typing import Literal, Optional
-from fastapi import APIRouter, Depends, HTTPException, Response
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 from app.database import get_db
@@ -10,14 +10,6 @@ from app.models import Expense
 from app.schemas import ExpenseCreate, ExpenseRead
 
 router = APIRouter()
-
-
-def _problem(status: int, title: str, detail: str) -> JSONResponse:
-    return JSONResponse(
-        status_code=status,
-        media_type="application/problem+json",
-        content={"type": f"https://httpstatuses.com/{status}", "title": title, "status": status, "detail": detail},
-    )
 
 
 @router.get("/healthz")

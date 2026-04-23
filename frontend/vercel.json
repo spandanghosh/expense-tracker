@@ -1,6 +1,6 @@
 {
   "rewrites": [{ "source": "/((?!api/).*)", "destination": "/index.html" }],
   "env": {
-    "VITE_API_BASE_URL": "https://your-expense-tracker-api.onrender.com"
+    "VITE_API_BASE_URL": "https://expense-tracker-le2w.onrender.com"
   }
 }
