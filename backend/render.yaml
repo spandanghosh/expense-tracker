@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: expense-tracker-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:///./expenses.db
+      - key: CORS_ORIGINS
+        # Update this to your Vercel frontend URL after deploying
+        value: https://your-app.vercel.app
